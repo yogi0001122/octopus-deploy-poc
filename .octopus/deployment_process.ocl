@@ -1,14 +1,16 @@
 step "run-a-script" {
     name = "Run a Script"
+    properties = {
+        Octopus.Action.MaxParallelism = "1"
+    }
 
     action {
         action_type = "Octopus.Script"
         properties = {
-            Octopus.Action.ExecutionTimeout.Minutes = "0"
             Octopus.Action.RunOnServer = "true"
-            Octopus.Action.Script.ScriptBody = "echo \"Hello\""
+            Octopus.Action.Script.ScriptBody = "Write-Host \"Hello\""
             Octopus.Action.Script.ScriptSource = "Inline"
-            Octopus.Action.Script.Syntax = "Bash"
+            Octopus.Action.Script.Syntax = "PowerShell"
         }
         worker_pool = "default-worker-pool-1"
     }
